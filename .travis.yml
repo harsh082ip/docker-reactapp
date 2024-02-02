@@ -9,3 +9,15 @@ script:
   - docker run -e CI=true harsh082ip/docker-reactapp npm run test
 
 # using this -e CI=true, it will exit with a status code of 0, if all tests are passed
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "docker-reactapp"
+  env: "Docker-reactapp-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-082615718135"
+  bucket_path: "docker-reactapp"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
